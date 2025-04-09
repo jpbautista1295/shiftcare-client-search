@@ -37,6 +37,6 @@ class SearchService
   def check_duplicates
     result_emails = @results.map{ |result| result['email'] }
 
-    result_emails.uniq.select { |email| result_emails.count(email) > 1 }
+    @results.select { |result| result_emails.count(result['email']) > 1 }
   end
 end
