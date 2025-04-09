@@ -8,7 +8,7 @@ ARGV << '-h' if ARGV.empty?
 options = {}
 
 op = OptionParser.new do |opts|
-  opts.banner = 'Usage: client_search.rb [options]'
+  opts.banner = 'Usage: cli.rb [options]'
   oc = CliCommands.new(opts, options)
   oc.load
 end
