@@ -1,8 +1,8 @@
-require 'net/http'
-require 'json'
+require "net/http"
+require "json"
 
 class SearchService
-  SAMPLE_FILE_PATH = './data/clients.json'
+  SAMPLE_FILE_PATH = "./data/clients.json"
 
   def initialize(search_field = nil, query = nil, remote_url = nil)
     @search_field = search_field
@@ -20,7 +20,7 @@ class SearchService
     else
       puts "Reading JSON file from: #{SAMPLE_FILE_PATH}"
       file = File.read(SAMPLE_FILE_PATH)
-      
+
       JSON.parse(file)
     end
   end
@@ -30,7 +30,7 @@ class SearchService
 
     @results.select do |result|
       if result[@search_field.to_s]
-        if @search_field.to_s != 'id'
+        if @search_field.to_s != "id"
           result[@search_field.to_s].downcase.include?(@query.downcase)
         else
           result[@search_field.to_s].to_i == @query.to_i
@@ -42,8 +42,8 @@ class SearchService
   end
 
   def check_duplicates
-    result_emails = @results.map{ |result| result['email'] }
+    result_emails = @results.map { |result| result["email"] }
 
-    @results.select { |result| result_emails.count(result['email']) > 1 }
+    @results.select { |result| result_emails.count(result["email"]) > 1 }
   end
 end

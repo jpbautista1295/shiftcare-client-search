@@ -55,7 +55,7 @@ ruby app.rb
 http://localhost:3000/query?search_field=full_name&q=davi
 ```
 
-The command above would search for entries with a full name that contains the word "davi".
+The endpoint above would search for entries with a full name that contains the word "davi".
 
 ##
 

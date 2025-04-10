@@ -1,14 +1,14 @@
-require 'optparse'
+require "optparse"
 
-require_relative 'lib/cli_commands'
-require_relative 'services/search_service'
+require_relative "lib/cli_commands"
+require_relative "services/search_service"
 
-ARGV << '-h' if ARGV.empty?
+ARGV << "-h" if ARGV.empty?
 
 options = {}
 
 op = OptionParser.new do |opts|
-  opts.banner = 'Usage: cli.rb [options]'
+  opts.banner = "Usage: cli.rb [options]"
   oc = CliCommands.new(opts, options)
   oc.load
 end
