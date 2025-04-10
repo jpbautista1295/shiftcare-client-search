@@ -13,7 +13,7 @@ ruby cli.rb [options]
 - `-s` / `--search-field` : The search field that will be used for the search. **Available options**: `email`, `full_name`, `id`
 - `-q` / `--query` : The search term that will be used.
 - `-d` / `--duplicate` : This option will search (and return) duplicate emails in the dataset.
-- `-r` / `--remote_url` : This option will allow users to indicate a URL that will be used as the dataset.
+- `-r` / `--remote-url` : This option will allow users to indicate a URL that will be used as the dataset.
 
 ### For example:
 
