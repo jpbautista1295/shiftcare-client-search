@@ -20,7 +20,7 @@ rescue OptionParser::InvalidArgument => e
   puts op.help
 end
 
-search_service = SearchService.new(options[:search_field], options[:query])
+search_service = SearchService.new(options[:search_field], options[:query], options[:remote_url])
 
 results = options[:duplicate] ? search_service.check_duplicates : search_service.filter_results
 

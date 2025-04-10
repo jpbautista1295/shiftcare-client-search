@@ -2,20 +2,27 @@ require 'net/http'
 require 'json'
 
 class SearchService
-  # CLIENTS_JSON_PATH = 'https://appassets02.shiftcare.com/manual/clients.json'
-  SAMPLE_FILE_PATH = './data/clients_two.json'
+  SAMPLE_FILE_PATH = './data/clients.json'
 
-  def initialize(search_field = nil, query = nil)
+  def initialize(search_field = nil, query = nil, remote_url = nil)
     @search_field = search_field
     @query = query
+    @remote_url = remote_url
     @results = fetch_results
   end
 
   def fetch_results
-    # response = Net::HTTP.get_response(URI.parse(CLIENTS_JSON_PATH))
-    file = File.read(SAMPLE_FILE_PATH)
-    
-    JSON.parse(file)
+    if @remote_url
+      puts "Reading JSON file from: #{@remote_url}"
+      response = Net::HTTP.get_response(URI.parse(@remote_url))
+
+      JSON.parse(response.body)
+    else
+      puts "Reading JSON file from: #{SAMPLE_FILE_PATH}"
+      file = File.read(SAMPLE_FILE_PATH)
+      
+      JSON.parse(file)
+    end
   end
 
   def filter_results

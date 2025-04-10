@@ -29,9 +29,17 @@ class CliCommands
     end
   end
 
+  def add_remote_url
+    remote_url_desc = 'This option will allow users to indicate a URL that will be used as the dataset.'
+    @parser_options.on('-r', '--remote_url REMOTE_URL', remote_url_desc) do |r|
+      @cli_options[:remote_url] = r
+    end
+  end
+
   def load
     add_search_field
     add_search_query
     add_duplicate
+    add_remote_url
   end
 end
