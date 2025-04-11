@@ -75,7 +75,7 @@ The endpoint above would search for duplicate entries given a custom JSON file a
 
 - The search field parameter can only accept three options: `id`, `full_name`, `email`. Any values other than those 3 would raise an exception.
 
-- The `remote_url` parameter can only accept links that starts with `http://` or `https://` and ends with the `.json` extension. Otherwise, it would raise and exception.
+- The `remote_url` parameter can only accept links that starts with `http://` or `https://` and ends with the `.json` extension. Otherwise, it would raise an exception.
 
 - The `search_field` and `q` parameters on the filters would work with any valid JSON file. Provided that the data inside the `remote_url` contains the three fields (`id`, `full_name`, `email`).
 
@@ -83,10 +83,10 @@ The endpoint above would search for duplicate entries given a custom JSON file a
 
 - Basically, the REST application will function similarly to the CLI application. Provided that the proper parameters are indicated, as specified on the documentation I’ve provided above.
 
-## Possible Improvements:
+## Possible Improvements
 
 1. Add pagination and results per page option
-2. Add a way to do exact search, string begins or ends with, etc. Similar to the `ransack` gem does it.
+2. Add a way to do exact search, string begins or ends with, etc. Similar to how the `ransack` gem does it.
 3. Add query objects instead of doing the logic to filter inside the search service.
 4. Possibly provide a way to add more fields that can be filtered out if the JSON file provided in the remote_url parameter contains more than the initial fields (`id`, `full_name`, `email`) indicated.
 5. Add a functional UI to possibly consume the API endpoints from Sinatra.
