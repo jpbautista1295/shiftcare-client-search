@@ -1,7 +1,10 @@
 require "net/http"
 require "json"
 
+require "./lib/exceptions/invalid_remote_url_error"
+
 class SearchService
+  REMOTE_URL_REGEX = /^https?:\/\/.*\.json$/
   SAMPLE_FILE_PATH = "./data/clients.json"
 
   def initialize(search_field = nil, query = nil, remote_url = nil)
@@ -14,6 +17,9 @@ class SearchService
   def fetch_results
     if @remote_url
       puts "Reading JSON file from: #{@remote_url}"
+
+      check_remote_url_pattern
+
       response = Net::HTTP.get_response(URI.parse(@remote_url))
 
       JSON.parse(response.body)
@@ -46,4 +52,9 @@ class SearchService
 
     @results.select { |result| result_emails.count(result["email"]) > 1 }
   end
+
+  private
+    def check_remote_url_pattern
+      raise InvalidRemoteUrlError unless REMOTE_URL_REGEX.match?(@remote_url)
+    end
 end
