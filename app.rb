@@ -18,4 +18,6 @@ get "/duplicates" do
   search_service = SearchService.new(nil, nil, params["remote_url"])
 
   json search_service.check_duplicates
+rescue InvalidRemoteUrlError => e
+  halt 403, { "Content-Type" => "application/json" }, { errors: [e.message] }.to_json
 end
