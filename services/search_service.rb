@@ -2,6 +2,7 @@ require "net/http"
 require "json"
 
 require "./lib/exceptions/invalid_remote_url_error"
+require "./lib/exceptions/invalid_search_field_error"
 
 class SearchService
   REMOTE_URL_REGEX = /^https?:\/\/.*\.json$/
@@ -34,6 +35,8 @@ class SearchService
   def filter_results
     return @results if @search_field == nil || @query == nil
 
+    check_search_field
+
     @results.select do |result|
       if result[@search_field.to_s]
         if @search_field.to_s != "id"
@@ -56,5 +59,9 @@ class SearchService
   private
     def check_remote_url_pattern
       raise InvalidRemoteUrlError unless REMOTE_URL_REGEX.match?(@remote_url)
+    end
+
+    def check_search_field
+      raise InvalidSearchFieldError unless %w[email full_name id].include?(@search_field)
     end
 end
